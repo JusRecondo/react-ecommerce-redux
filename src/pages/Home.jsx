@@ -32,7 +32,7 @@ const Home = () => {
 
   return (
     <>
-      <h1>Welcome {user.firstName}</h1>
+      <h2>Welcome {user.firstName}</h2>
       <section className='products'>
         {
           loadingProducts

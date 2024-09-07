@@ -2,7 +2,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { addProductToCart, removeProductFromCart } from '../redux/features/cartSlice'
 import Card from './Card'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Products = ({ products }) => {
   const dispatch = useDispatch()
@@ -38,11 +38,13 @@ const Products = ({ products }) => {
                 tabIndex='0'
                 aria-label={`Navigate to product detail ${product.title}`}
               />
-              <h5
+              <h3
                 className='card-title'
               >
-                {product.title}
-              </h5>
+                <Link to={`/product/${product.id}`}>
+                  {product.title}
+                </Link>
+              </h3>
               <p className='card-text'>${product.price}</p>
               <button
                 className={`btn ${checkProductInCart(product.id) ? 'btn-danger' : 'btn-success'
