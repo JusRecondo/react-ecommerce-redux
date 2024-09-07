@@ -43,6 +43,9 @@ a {
     }
 }
 
+img {
+    max-width: 100%;
+}
 
 button {
     font-family: inherit;
@@ -54,14 +57,15 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 4px;
     padding: 10px 20px;
     border-radius: 8px;
     cursor: pointer;
     
     &:hover,
-    &:focus,
-    &:active {
+    &:focus {
         background-color: $secondary;
+        color: $dark;
     }
 }
 
