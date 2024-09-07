@@ -1,3 +1,4 @@
+//Home Products
 .products {
     width: 100%;
     display: flex;
@@ -16,5 +17,48 @@
 
     .product-list-img {
         cursor: pointer;
+    }
+}
+
+//ProductDetail
+.product-detail-card {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+
+    
+    @media #{$desktop} {
+        flex-direction: row;
+    }
+
+    .product-detail-img {
+        max-width: 320px;
+    }
+
+    .product-detail-info {
+
+    }
+
+}
+
+.reviews {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 2rem 0;
+
+    @media #{$desktop} {
+        flex-direction: row;
+    }
+
+    h2 {
+        flex-basis: 100%;
+        margin: 10px 0;
+    }
+
+    .card {
+        height: 100%;
     }
 }

@@ -3,6 +3,7 @@ import { getProductById } from '../services/products'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { addProductToCart, removeProductFromCart } from '../redux/features/cartSlice'
+import Card from '../components/Card'
 
 const ProductDetail = () => {
   const [product, setProduct] = useState({})
@@ -53,42 +54,56 @@ const ProductDetail = () => {
   return (
     <section>
       {
-                loadingProduct
-                  ? (<p>Loading...</p>)
-                  : (productError && productError.length === 0)
-                      ? (<p>{productError}</p>)
-                      : (
-                        <>
-                          <img
-                            className='product-detail-img'
-                            src={productImages[0]}
-                            alt={product.title}
-                          />
-                          <h3>
-                            {product.title} - {product.brand}
-                          </h3>
-                          <span>Categoría: {product.category}</span>
-                          <h4>
-                            <span className='badge'>${product.price}</span>
-                          </h4>
-                          <p>{product.description}</p>
-                          <button
-                            className={`btn ${checkProductInCart(product.id) ? 'btn-danger' : 'btn-success'
-                                        }`}
-                            onClick={() => handleAddOrRemoveProduct(product.id)}
-                          >
-                            {checkProductInCart(product.id) ? 'Remove' : 'Add'}
-                          </button>
-                          {checkProductInCart(product.id) && (
-                            <button
-                              onClick={() => navigate('/cart')}
-                            >
-                              Go to Cart
-                            </button>
-                          )}
-                        </>
-                        )
-            }
+        loadingProduct
+          ? (<p>Loading...</p>)
+          : (productError && productError.length === 0)
+              ? (<p>{productError}</p>)
+              : (
+                <>
+                  <Card customClassName='large product-detail-card'>
+                    <img
+                      className='product-detail-img'
+                      src={productImages[0]}
+                      alt={product.title}
+                    />
+                    <div className='product-detail-info'>
+                      <h2>
+                        {product.title} - {product.brand}
+                      </h2>
+                      <span>Category: {product.category}</span>
+                      <h3>
+                        <span className='badge'>${product.price}</span>
+                      </h3>
+                      <p>{product.description}</p>
+                      <button
+                        className={`btn ${checkProductInCart(product.id) ? 'btn-danger' : 'btn-success'
+                        }`}
+                        onClick={() => handleAddOrRemoveProduct(product.id)}
+                      >
+                        {checkProductInCart(product.id) ? 'Remove from Cart' : 'Add to Cart'}
+                      </button>
+                      {checkProductInCart(product.id) && (
+                        <button
+                          onClick={() => navigate('/cart')}
+                        >
+                          Go to Cart
+                        </button>
+                      )}
+                    </div>
+                  </Card>
+                  {product.reviews?.length &&
+                    <section className='reviews'>
+                      <h2>Reviews</h2>
+                      {product.reviews.map((review, i) => (
+                        <Card key={i} customClassName='small'>
+                          <h4>{review.reviewerName}</h4>
+                          <p>{review.comment}</p>
+                        </Card>
+                      ))}
+                    </section>}
+                </>
+                )
+      }
     </section>
   )
 }
