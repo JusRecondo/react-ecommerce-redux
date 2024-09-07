@@ -17,19 +17,17 @@ const Header = () => {
       <Link to='/cart' aria-label='Go to cart page' className='cart-link'>
         <FiShoppingCart className='cart-icon' /> {totalCount}
       </Link>
-      <nav>
-        {user.token && (
+      {user.token &&
+        <nav>
           <Link to='/profile' aria-label='Go to profile page' className='profile-link'>
             My Profile
           </Link>
-        )}
-        {user.token &&
           <button
             onClick={handleLogout}
           >
             Logout <FiLogOut />
-          </button>}
-      </nav>
+          </button>
+        </nav>}
     </header>
   )
 }
