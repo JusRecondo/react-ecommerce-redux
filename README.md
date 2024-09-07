@@ -8,5 +8,7 @@ Simple ecommerce with user authentication, products and cart using data from [du
 - Vite 
 - JavaScript
 - Redux
+- Redux toolkit
+- Redux persist
 - Sass
 - Standard JS (linter)
