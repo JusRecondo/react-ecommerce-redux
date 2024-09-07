@@ -1,5 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import userSlice from './features/userSlice'
+import cartSlice from './features/cartSlice'
 import storageSession from 'redux-persist/lib/storage/session'
 import {
   persistReducer,
@@ -14,11 +15,12 @@ import {
 const persistConfig = {
   key: 'root',
   storage: storageSession,
-  whitelist: ['user']
+  whitelist: ['user', 'cart']
 }
 
 const rootReducer = combineReducers({
-  user: userSlice
+  user: userSlice,
+  cart: cartSlice
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
