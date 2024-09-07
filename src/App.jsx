@@ -3,6 +3,7 @@ import Layout from './components/Layout'
 import Login from './pages/Login'
 import Home from './pages/Home'
 import Cart from './pages/Cart'
+import ProductDetail from './pages/ProductDetail'
 
 function App () {
   return (
@@ -23,6 +24,12 @@ function App () {
           <Route
             path='/cart'
             element={<Cart />}
+          />
+          <Route
+            path='/product/:productId'
+            element={
+              <ProductDetail />
+            }
           />
         </Route>
       </Routes>
