@@ -10,4 +10,20 @@ header {
     .cart-icon {
         font-size: 24px;
     }
+
+    .cart-link {
+        border: 2px solid #fbfbfb;
+        padding: 0.9rem;
+        border-radius: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+
+        &:hover,
+        &:focus {
+            background-color: $light;
+            color: $dark;
+        }
+    }
 }
