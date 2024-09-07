@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 // eslint-disable-next-line no-unused-vars
-const useForm = (initialState) => {
+export function useForm (initialState) {
   const [formData, setFormData] = useState(initialState)
   const [formErrors, setFormErrors] = useState({})
 
@@ -35,5 +35,3 @@ const useForm = (initialState) => {
     setFormErrors
   }
 }
-
-export default useForm

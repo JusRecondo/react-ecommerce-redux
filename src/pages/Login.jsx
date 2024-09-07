@@ -1,5 +1,7 @@
 import Card from '../components/Card'
-import useForm from '../hooks/useForm'
+import { useNavigate } from 'react-router-dom'
+import { userAuth } from '../services/user'
+import { useForm } from '../hooks/useForm'
 import { FiUser, FiLock } from 'react-icons/fi'
 
 const formInitialState = {
@@ -16,6 +18,21 @@ const Login = () => {
     handleOnChange
   } = useForm(formInitialState)
 
+  const navigate = useNavigate()
+
+  const handleLogin = async (data) => {
+    try {
+      const user = await userAuth(data)
+      if (user) {
+        setFormErrors({})
+        navigate('/')
+      }
+    } catch (e) {
+      console.error(e)
+      setFormErrors({ global: 'Invalid credentials' })
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     if (Object.values(formData).some(value => value === '')) {
@@ -24,10 +41,10 @@ const Login = () => {
         global: 'Please fill required fields'
       }))
     } else {
-      console.log(formData)
-      // logIn(loginFormData)
+      handleLogin(formData)
     }
   }
+
   return (
     <>
       <Card>
@@ -81,8 +98,8 @@ const Login = () => {
         <summary>
           Test credentials
         </summary>
-        <p>username: kminchelle</p>
-        <p>password: 0lelplR</p>
+        <p>username: emilys</p>
+        <p>password: emilyspass</p>
       </details>
     </>
   )
