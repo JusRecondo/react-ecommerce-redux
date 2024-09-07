@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { FiShoppingCart } from 'react-icons/fi'
 
 const Header = () => {
   return (
@@ -8,8 +9,8 @@ const Header = () => {
           My Store
         </Link>
       </h1>
-      <Link to='/cart'>
-        Cart
+      <Link to='/cart' aria-label='Go to cart page'>
+        <FiShoppingCart className='cart-icon' />
       </Link>
     </header>
   )
