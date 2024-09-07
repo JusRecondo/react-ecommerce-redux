@@ -1,10 +1,7 @@
 import Card from '../components/Card'
-import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { userAuth } from '../services/user'
 import { useForm } from '../hooks/useForm'
+import { useUser } from '../hooks/useUser'
 import { FiUser, FiLock } from 'react-icons/fi'
-import { setUser } from '../redux/features/userSlice'
 
 const formInitialState = {
   username: '',
@@ -20,26 +17,7 @@ const Login = () => {
     handleOnChange
   } = useForm(formInitialState)
 
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-
-  const handleLogin = async (data) => {
-    try {
-      const user = await userAuth(data)
-      if (user) {
-        setFormErrors({})
-        dispatch(setUser({
-          email: user.email,
-          firstName: user.firstName,
-          token: user.token
-        }))
-        navigate('/')
-      }
-    } catch (e) {
-      console.error(e)
-      setFormErrors({ global: 'Invalid credentials' })
-    }
-  }
+  const { handleLogin, loading, loginError } = useUser()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -88,9 +66,10 @@ const Login = () => {
               {formErrors.password}
             </div>
           )}
-          {formErrors.global && (
+          {loading && (<p>Loggin in...</p>)}
+          {loginError && (
             <div className='form-error'>
-              {formErrors.global}
+              {loginError}
             </div>
           )}
           <button
