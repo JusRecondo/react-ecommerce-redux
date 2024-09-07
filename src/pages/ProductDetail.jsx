@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { getProductById } from '../services/products'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { addProductToCart, removeProductFromCart } from '../redux/features/cartSlice'
+import { useCart } from '../hooks/useCart'
 import Card from '../components/Card'
+import ProductQtyButtons from '../components/ProductQtyButtons'
 
 const ProductDetail = () => {
   const [product, setProduct] = useState({})
@@ -11,9 +11,7 @@ const ProductDetail = () => {
   const [loadingProduct, setLoadingProduct] = useState(false)
   const [productError, setProductError] = useState(false)
   const { productId } = useParams()
-  const { productsInCart } = useSelector((state) => state.cart)
   const navigate = useNavigate()
-  const dispatch = useDispatch()
 
   useEffect(() => {
     const getProductFromAPI = async (productId) => {
@@ -40,17 +38,14 @@ const ProductDetail = () => {
     }
   }, [product])
 
-  const checkProductInCart = (productId) => {
-    return productsInCart.find((pdt) => pdt.id === productId)
-  }
-
-  const handleAddOrRemoveProduct = (productId) => {
-    if (productsInCart.find((pdt) => pdt.id === productId)) {
-      dispatch(removeProductFromCart(productId))
-    } else {
-      dispatch(addProductToCart(product))
-    }
-  }
+  const {
+    productsInCart,
+    checkProductInCart,
+    getProductInCartIndex,
+    handleAddProduct
+  } = useCart()
+  const isProductInCart = checkProductInCart(product.id)
+  const productInCartindex = isProductInCart ? getProductInCartIndex(product.id) : null
   return (
     <section>
       {
@@ -75,20 +70,29 @@ const ProductDetail = () => {
                         <span className='badge'>${product.price}</span>
                       </h3>
                       <p>{product.description}</p>
+                      {
+                isProductInCart && (productsInCart[productInCartindex].quantity > 0)
+                  ? (
+                    <div className='product-detail-btns'>
+                      <ProductQtyButtons
+                        product={product}
+                        productInCartindex={productInCartindex}
+                      />
                       <button
-                        className={`btn ${checkProductInCart(product.id) ? 'btn-danger' : 'btn-success'
-                        }`}
-                        onClick={() => handleAddOrRemoveProduct(product.id)}
+                        onClick={() => navigate('/cart')}
                       >
-                        {checkProductInCart(product.id) ? 'Remove from Cart' : 'Add to Cart'}
+                        Go to Cart
                       </button>
-                      {checkProductInCart(product.id) && (
-                        <button
-                          onClick={() => navigate('/cart')}
-                        >
-                          Go to Cart
-                        </button>
-                      )}
+                    </div>
+                    )
+                  : (
+                    <button
+                      onClick={() => handleAddProduct(product)}
+                    >
+                      Add to Cart
+                    </button>
+                    )
+                  }
                     </div>
                   </Card>
                   {product.reviews?.length &&

@@ -10,12 +10,33 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addProductToCart: (state, action) => {
-      state.productsInCart = [...state.productsInCart, action.payload]
-      state.totalCount += 1
+      const product = action.payload
+      const productInCartIndex = state.productsInCart.findIndex(
+        (item) => item.product.id === product.id
+      )
+      if (productInCartIndex >= 0) {
+        state.productsInCart[productInCartIndex].quantity += 1
+        state.totalCount += 1
+      } else {
+        state.productsInCart = [...state.productsInCart, {
+          product,
+          quantity: 1
+        }]
+        state.totalCount += 1
+      }
     },
     removeProductFromCart: (state, action) => {
-      state.productsInCart = state.productsInCart.filter(product => product.id !== action.payload)
-      state.totalCount -= 1
+      const productId = action.payload
+      const productInCartIndex = state.productsInCart.findIndex(
+        (item) => item.product.id === productId
+      )
+      if (productInCartIndex >= 0) {
+        state.productsInCart[productInCartIndex].quantity -= 1
+        state.totalCount -= 1
+      } else {
+        state.productsInCart = state.productsInCart.filter(product => product.id !== productId)
+        state.totalCount -= 1
+      }
     },
     emptyCart: (state) => {
       state.productsInCart = []
