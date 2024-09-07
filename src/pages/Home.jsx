@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
 import { getProducts } from '../services/products'
 import Products from '../components/Products'
 
 const Home = () => {
-  const user = useSelector(state => state.user)
   const [products, setProducts] = useState([])
   const [loadingProducts, setLoadingProducts] = useState(false)
   const [productsError, setProductsError] = useState(false)
@@ -32,7 +30,7 @@ const Home = () => {
 
   return (
     <>
-      <h2>Welcome {user.firstName}</h2>
+      <h2>Welcome to the best online store!</h2>
       <section className='products'>
         {
           loadingProducts

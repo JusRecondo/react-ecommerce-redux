@@ -26,4 +26,15 @@ header {
             color: $dark;
         }
     }
+
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 16px;
+    }
+
+    .profile-link {
+        font-size: 18px;
+    }
 }

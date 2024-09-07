@@ -4,6 +4,8 @@ import Login from './pages/Login'
 import Home from './pages/Home'
 import Cart from './pages/Cart'
 import ProductDetail from './pages/ProductDetail'
+import ProtectedRoute from './components/ProtectedRoute'
+import Profile from './pages/Profile'
 
 function App () {
   return (
@@ -14,12 +16,12 @@ function App () {
           element={<Layout />}
         >
           <Route
-            path='/login'
-            element={<Login />}
-          />
-          <Route
             index
             element={<Home />}
+          />
+          <Route
+            path='/login'
+            element={<Login />}
           />
           <Route
             path='/cart'
@@ -29,6 +31,14 @@ function App () {
             path='/product/:productId'
             element={
               <ProductDetail />
+            }
+          />
+          <Route
+            path='/profile'
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
             }
           />
         </Route>

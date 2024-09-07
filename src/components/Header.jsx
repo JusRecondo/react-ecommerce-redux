@@ -1,18 +1,12 @@
-import { useDispatch, useSelector } from 'react-redux'
-import { unsetUser } from '../redux/features/userSlice'
-import { Link, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { FiShoppingCart, FiLogOut } from 'react-icons/fi'
+import { useUser } from '../hooks/useUser'
 
 const Header = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-
   const { totalCount } = useSelector(state => state.cart)
+  const { handleLogout, user } = useUser()
 
-  const handleLogout = () => {
-    dispatch(unsetUser())
-    navigate('/login')
-  }
   return (
     <header>
       <h1>
@@ -23,11 +17,19 @@ const Header = () => {
       <Link to='/cart' aria-label='Go to cart page' className='cart-link'>
         <FiShoppingCart className='cart-icon' /> {totalCount}
       </Link>
-      <button
-        onClick={handleLogout}
-      >
-        Logout <FiLogOut />
-      </button>
+      <nav>
+        {user.token && (
+          <Link to='/profile' aria-label='Go to profile page' className='profile-link'>
+            My Profile
+          </Link>
+        )}
+        {user.token &&
+          <button
+            onClick={handleLogout}
+          >
+            Logout <FiLogOut />
+          </button>}
+      </nav>
     </header>
   )
 }
