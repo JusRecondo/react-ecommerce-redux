@@ -1,27 +1,32 @@
-import { useState } from 'react'
 import Card from '../components/Card'
+import useForm from '../hooks/useForm'
+import { FiUser, FiLock } from 'react-icons/fi'
+
+const formInitialState = {
+  username: '',
+  password: ''
+}
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    username: '',
-    password: ''
-  })
-
-  const handleChange = (e) => {
-    const name = e.target.name
-    const value = e.target.value
-
-    const newData = {
-      ...formData,
-      [name]: value
-    }
-
-    setFormData(newData)
-  }
+  const {
+    formData,
+    formErrors,
+    setFormErrors,
+    handleOnBlur,
+    handleOnChange
+  } = useForm(formInitialState)
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(formData)
+    if (Object.values(formData).some(value => value === '')) {
+      setFormErrors(prevErrors => ({
+        ...prevErrors,
+        global: 'Please fill required fields'
+      }))
+    } else {
+      console.log(formData)
+      // logIn(loginFormData)
+    }
   }
   return (
     <>
@@ -29,28 +34,56 @@ const Login = () => {
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor='username'>
-            Username:
+            <FiUser /> Username*:
           </label>
           <input
             type='text'
             id='username'
             name='username'
-            onChange={handleChange}
+            onChange={handleOnChange}
+            onBlur={handleOnBlur}
           />
+          {formErrors.username && (
+            <div className='form-error'>
+              {formErrors.username}
+            </div>
+          )}
           <label htmlFor='password'>
-            Password:
+            <FiLock /> Password*:
           </label>
           <input
             type='password'
             id='password'
             name='password'
-            onChange={handleChange}
+            onChange={handleOnChange}
+            onBlur={handleOnBlur}
           />
-          <button type='submit'>
+          {formErrors.password && (
+            <div className='form-error'>
+              {formErrors.password}
+            </div>
+          )}
+          {formErrors.global && (
+            <div className='form-error'>
+              {formErrors.global}
+            </div>
+          )}
+          <button
+            type='submit'
+            disabled={Object.keys(formErrors).length > 0}
+          >
             Login
           </button>
         </form>
       </Card>
+      <br />
+      <details>
+        <summary>
+          Test credentials
+        </summary>
+        <p>username: kminchelle</p>
+        <p>password: 0lelplR</p>
+      </details>
     </>
   )
 }
