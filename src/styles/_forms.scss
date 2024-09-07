@@ -11,6 +11,12 @@ form {
     }
 }
 
+label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
 input,
 label {
     width: 100%;
@@ -29,3 +35,7 @@ input {
     }
 }
 
+.form-error {
+    color: $error;
+    font-size: 14px;
+}
