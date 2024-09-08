@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUser, unsetUser } from '../redux/features/userSlice'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { userAuth } from '../services/user'
 
 export function useUser () {
@@ -10,6 +10,7 @@ export function useUser () {
   const user = useSelector(state => state.user)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const { state } = useLocation()
 
   useEffect(() => {
     if (!user) {
@@ -30,7 +31,11 @@ export function useUser () {
           image: user.image,
           token: user.token
         }))
-        navigate('/')
+        if (state.prevPath.includes('/checkout')) {
+          navigate('/checkout')
+        } else {
+          navigate('/')
+        }
       }
     } catch (e) {
       console.error(e)

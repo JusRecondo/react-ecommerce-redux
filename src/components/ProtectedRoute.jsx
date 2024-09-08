@@ -1,13 +1,18 @@
 /* eslint-disable react/prop-types */
-import { Navigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useUser } from '../hooks/useUser'
+import { useEffect } from 'react'
 
 const ProtectedRoute = ({ children }) => {
   const { user } = useUser()
+  const navigate = useNavigate()
+  const { pathname } = useLocation()
 
-  if (!user || !user.token) {
-    return <Navigate to='/login' replace />
-  }
+  useEffect(() => {
+    if (!user || !user.token) {
+      return navigate('/login', { state: { prevPath: pathname } })
+    }
+  }, [user])
 
   return (
     <>
