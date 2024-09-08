@@ -101,23 +101,7 @@ const Home = () => {
             min='0'
             max='2500'
             onChange={handleFilterChange}
-            list='prices'
           />
-          <datalist id='prices'>
-            <option value='0' />
-            <option value='200' />
-            <option value='400' />
-            <option value='600' />
-            <option value='800' />
-            <option value='1000' />
-            <option value='1200' />
-            <option value='1400' />
-            <option value='1600' />
-            <option value='1800' />
-            <option value='2000' />
-            <option value='2200' />
-            <option value='2400' />
-          </datalist>
         </div>
       </section>
       <section className='products'>

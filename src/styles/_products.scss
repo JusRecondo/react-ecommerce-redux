@@ -120,8 +120,13 @@
     }
 
     .price-filter {
+        @media #{$tablet} {
+            width: 300px;
+        }
+
         input {
             accent-color: $primary;
+            height: 24px;
         }
     }
 }
