@@ -3,28 +3,33 @@ header {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 0 2rem;
+    padding: 0 1rem;
     background-color: $primary;
     color: $light;
+
+    @media #{$tablet} {
+        padding: 0 2rem;
+    }
 
     .cart-icon {
         font-size: 24px;
     }
 
     .cart-link {
-        border: 2px solid #fbfbfb;
-        padding: 0.9rem;
-        border-radius: 16px;
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 4px;
+        font-size: 18px;
 
-        &:hover,
-        &:focus {
-            background-color: $light;
-            color: $dark;
+        span {
+            display: none;
+            
+            @media #{$tablet} {
+                display: inline-block;
+            }
         }
+
     }
 
     nav {
@@ -36,5 +41,9 @@ header {
 
     .profile-link {
         font-size: 18px;
+    }
+
+    .logout-btn {
+        padding: 0;
     }
 }

@@ -16,14 +16,21 @@ main {
     max-width: 1280px;
     min-height: calc(100vh - 130px);
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media #{$tablet} {
+        padding: 2rem;
+    }
 }
 
 section {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 footer {
