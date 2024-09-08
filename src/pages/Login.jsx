@@ -17,7 +17,7 @@ const Login = () => {
     handleOnChange
   } = useForm(formInitialState)
 
-  const { handleLogin, loading, loginError } = useUser()
+  const { handleLogin, loading, error } = useUser()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -67,9 +67,9 @@ const Login = () => {
             </div>
           )}
           {loading && (<p>Loggin in...</p>)}
-          {loginError && (
+          {error && (
             <div className='form-error'>
-              {loginError}
+              {error}
             </div>
           )}
           <button
