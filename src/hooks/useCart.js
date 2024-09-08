@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addProductToCart, removeProductFromCart } from '../redux/features/cartSlice'
 
 export function useCart () {
-  const { productsInCart } = useSelector(state => state.cart)
+  const { productsInCart, totalCount } = useSelector(state => state.cart)
   const dispatch = useDispatch()
 
   const checkProductInCart = (productId) => {
@@ -23,6 +23,7 @@ export function useCart () {
 
   return {
     productsInCart,
+    totalCount,
     checkProductInCart,
     getProductInCartIndex,
     handleAddProduct,

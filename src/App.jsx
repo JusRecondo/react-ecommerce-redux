@@ -6,6 +6,7 @@ import Cart from './pages/Cart'
 import ProductDetail from './pages/ProductDetail'
 import ProtectedRoute from './components/ProtectedRoute'
 import Profile from './pages/Profile'
+import Checkout from './pages/Checkout'
 
 function App () {
   return (
@@ -31,6 +32,14 @@ function App () {
             path='/product/:productId'
             element={
               <ProductDetail />
+            }
+          />
+          <Route
+            path='/checkout'
+            element={
+              <ProtectedRoute>
+                <Checkout />
+              </ProtectedRoute>
             }
           />
           <Route

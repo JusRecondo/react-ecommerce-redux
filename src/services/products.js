@@ -1,6 +1,6 @@
 export const getProducts = async () => {
   try {
-    const response = await fetch('https://dummyjson.com/products?limit=50')
+    const response = await fetch('https://dummyjson.com/products?limit=70')
     if (!response.ok) {
       throw new Error(`Request failed with status ${response.status}`)
     }
