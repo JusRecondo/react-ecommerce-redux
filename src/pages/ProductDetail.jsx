@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useCart } from '../hooks/useCart'
 import Card from '../components/Card'
 import ProductQtyButtons from '../components/ProductQtyButtons'
+import { FiStar } from 'react-icons/fi'
 
 const ProductDetail = () => {
   const [product, setProduct] = useState({})
@@ -99,9 +100,19 @@ const ProductDetail = () => {
                     <section className='reviews'>
                       <h2>Reviews</h2>
                       {product.reviews.map((review, i) => (
-                        <Card key={i} customClassName='small'>
+                        <Card key={i}>
                           <h4>{review.reviewerName}</h4>
                           <p>{review.comment}</p>
+                          {console.log(review)}
+                          {review.rating > 0 && (
+                            <div>
+                              {
+                                [...Array(review.rating)].map(point => (
+                                  <FiStar key={point} className='review-star' />
+                                ))
+                              }
+                            </div>
+                          )}
                         </Card>
                       ))}
                     </section>}
