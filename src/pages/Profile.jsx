@@ -38,10 +38,10 @@ const Profile = () => {
                   <strong>Birth Date:</strong> {user.birthDate}
                 </p>
                 <p>
-                  <strong>Address:</strong> {`${user.address.address},  ${user.address.city}, ${user.address.state}, ${user.address.country}`}
+                  <strong>Address:</strong> {`${user.address}, ${user.city}, ${user.country}`}
                 </p>
                 <p>
-                  <strong>Postal Code:</strong> {user.address.postalCode}
+                  <strong>Postal Code:</strong> {user.postalCode}
                 </p>
               </div>
             </>

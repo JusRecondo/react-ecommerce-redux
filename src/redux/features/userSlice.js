@@ -13,14 +13,15 @@ export const userSlice = createSlice({
       state.image = image
       state.token = token
       state.refreshToken = refreshToken
-      /* state = { ...action.payload } */
     },
     setUserProfileData: (state, action) => {
-      const { phone, address, birthDate } = action.payload
+      const { phone, address, city, country, postalCode, birthDate } = action.payload
       state.phone = phone
       state.address = address
+      state.city = city
+      state.country = country
+      state.postalCode = postalCode
       state.birthDate = birthDate
-      /* state = { ...action.payload } */
     },
     setRefreshedToken: (state, action) => {
       const { token, refreshToken } = action.payload

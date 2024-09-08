@@ -9,7 +9,7 @@ const ProtectedRoute = ({ children }) => {
   const { pathname } = useLocation()
 
   useEffect(() => {
-    if (!user || !user.token) {
+    if (!user.token) {
       return navigate('/login', { state: { prevPath: pathname } })
     }
   }, [user])
