@@ -35,6 +35,18 @@ input {
     }
 }
 
+.password-input-container {
+    width: 100%;
+    position: relative;
+
+    .show-pass-icon,
+    .hide-pass-icon {
+        position: absolute;
+        right: 8px;
+        top: 8px;
+    }
+}
+
 .form-error {
     color: $error;
     font-size: 14px;

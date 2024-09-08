@@ -1,7 +1,8 @@
+import { useRef, useState } from 'react'
 import Card from '../components/Card'
 import { useForm } from '../hooks/useForm'
 import { useUser } from '../hooks/useUser'
-import { FiUser, FiLock } from 'react-icons/fi'
+import { FiUser, FiLock, FiEye, FiEyeOff } from 'react-icons/fi'
 
 const formInitialState = {
   username: '',
@@ -9,6 +10,19 @@ const formInitialState = {
 }
 
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false)
+  const passwordInputRef = useRef()
+  const toggleShowPassword = () => {
+    setShowPassword(prevState => {
+      if (prevState === true) {
+        passwordInputRef.current.type = 'password'
+      } else {
+        passwordInputRef.current.type = 'text'
+      }
+      return !prevState
+    })
+  }
+
   const {
     formData,
     formErrors,
@@ -54,13 +68,25 @@ const Login = () => {
           <label htmlFor='password'>
             <FiLock /> Password*:
           </label>
-          <input
-            type='password'
-            id='password'
-            name='password'
-            onChange={handleOnChange}
-            onBlur={handleOnBlur}
-          />
+          <div className='password-input-container'>
+            <input
+              type='password'
+              id='password'
+              name='password'
+              onChange={handleOnChange}
+              onBlur={handleOnBlur}
+              ref={passwordInputRef}
+            />
+            {showPassword
+              ? <FiEyeOff
+                  onClick={toggleShowPassword}
+                  className='hide-pass-icon'
+                />
+              : <FiEye
+                  onClick={toggleShowPassword}
+                  className='show-pass-icon'
+                />}
+          </div>
           {formErrors.password && (
             <div className='form-error'>
               {formErrors.password}
