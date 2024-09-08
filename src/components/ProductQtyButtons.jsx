@@ -10,13 +10,13 @@ const ProductQtyButtons = ({ product, productInCartindex }) => {
   return (
     <div className='product-qty-btns'>
       <button
-        onClick={() => handleAddProduct(product)}
-      >+
+        onClick={() => handleRemoveProduct(product.id)}
+      >-
       </button>
       <span>{productsInCart[productInCartindex].quantity}</span>
       <button
-        onClick={() => handleRemoveProduct(product.id)}
-      >-
+        onClick={() => handleAddProduct(product)}
+      >+
       </button>
     </div>
   )

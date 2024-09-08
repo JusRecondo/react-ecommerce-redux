@@ -9,7 +9,6 @@ export const userSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       const { firstName, lastName, email, image, token } = action.payload
-      console.log(action.payload)
       state.fullName = firstName + ' ' + lastName
       state.email = email
       state.image = image

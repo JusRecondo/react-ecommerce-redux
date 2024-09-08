@@ -47,7 +47,7 @@ const ProductDetail = () => {
   const isProductInCart = checkProductInCart(product.id)
   const productInCartindex = isProductInCart ? getProductInCartIndex(product.id) : null
   return (
-    <section>
+    <>
       {
         loadingProduct
           ? (<p>Loading...</p>)
@@ -108,7 +108,7 @@ const ProductDetail = () => {
                 </>
                 )
       }
-    </section>
+    </>
   )
 }
 
