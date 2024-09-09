@@ -9,7 +9,7 @@ import './styles/index.scss'
 createRoot(document.getElementById('root')).render(
   <PersistGate persistor={persistor}>
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename='/react-ecommerce-redux/'>
         <App />
       </BrowserRouter>
     </Provider>
