@@ -23,7 +23,7 @@ label {
     text-align: left;
 }
 
-input {
+input, select {
     height: 32px;
     padding: 4px;
     font-family: inherit;
@@ -34,6 +34,11 @@ input {
     &:focus {
         border: 2px solid $primary;
     }
+}
+
+input[type="range"] {
+    accent-color: $primary;
+    height: 24px;
 }
 
 .password-input-container {

@@ -92,8 +92,7 @@ const Home = () => {
           </select>
         </div>
         <div className='price-filter'>
-          <label htmlFor='price'>Price</label>
-          <span>${filters.minPrice}</span>
+          <label htmlFor='price'>Price: ${filters.minPrice}</label>
           <input
             type='range'
             id='price'

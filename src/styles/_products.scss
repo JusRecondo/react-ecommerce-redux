@@ -112,21 +112,24 @@
 .filters {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     gap: 16px;
-    padding: 1rem 0;
+    padding: 1rem;
 
     @media #{$tablet} {
         flex-direction: row;
     }
 
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 4px;
+    }
+    
     .price-filter {
         @media #{$tablet} {
             width: 300px;
-        }
-
-        input {
-            accent-color: $primary;
-            height: 24px;
         }
     }
 }
