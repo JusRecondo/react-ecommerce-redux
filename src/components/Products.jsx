@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useCart } from '../hooks/useCart'
 import { Link, useNavigate } from 'react-router-dom'
-import Card from './Card'
+import Card from './card/Card'
 import ProductQtyButtons from './ProductQtyButtons'
 
 const Products = ({ products }) => {

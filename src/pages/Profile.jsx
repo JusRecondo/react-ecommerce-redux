@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useUser } from '../hooks/useUser'
-import Card from '../components/Card'
+import Card from '../components/card/Card'
 
 const Profile = () => {
   const { loading, user, getUserProfileData } = useUser()

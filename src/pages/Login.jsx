@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import Card from '../components/Card'
+import Card from '../components/card/Card'
 import { useForm } from '../hooks/useForm'
 import { useUser } from '../hooks/useUser'
 import { FiUser, FiLock, FiEye, FiEyeOff } from 'react-icons/fi'

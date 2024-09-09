@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { getProductById } from '../services/products'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useCart } from '../hooks/useCart'
-import Card from '../components/Card'
+import Card from '../components/card/Card'
 import ProductQtyButtons from '../components/ProductQtyButtons'
 import { FiStar } from 'react-icons/fi'
 
